@@ -1,0 +1,8 @@
+services: 
+  img:
+    image: my-node-app:v1
+    build: .
+    container_name: my-node-app-test
+    ports:
+      - "5000:5000"
+    
