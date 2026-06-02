@@ -1,8 +1,14 @@
-services: 
+services:
   img:
     image: my-node-app:v1
-    build: .
+    build:
+      context: .
+      dockerfile: dockerfile
+
+    volumes:
+      - .:/node-app
+
+    working_dir: /node-app
     container_name: my-node-app-test
     ports:
       - "5000:5000"
-    
