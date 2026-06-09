@@ -1,3 +1,4 @@
+version: "3.8"
 services:
   img:
     image: my-node-app:v1
@@ -5,10 +6,36 @@ services:
       context: .
       dockerfile: dockerfile
 
+    environment:
+      PORT: ${PORT}
+      # DATABASE_NAME: ${DATABASE_NAME}
+
     volumes:
       - .:/node-app
 
     working_dir: /node-app
     container_name: my-node-app-test
+
     ports:
       - "5000:5000"
+
+    env_file:
+      - ./.env
+
+    depends_on:
+      - mongodb
+
+    # environment:
+    #   MONGO_URI: mongodb://mongodb:27017/mydatabase
+
+  mongodb:
+    image: mongo:latest
+    container_name: docker-node-app-mongodb
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

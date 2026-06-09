@@ -1,16 +1,16 @@
 import express from "express";
 import { fileURLToPath } from "url";
+import route from "./routes/Route.js";
 import path from "path";
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 const HOST = "localhost";//process.env.HOST;
 
 // ---- FIX __dirname (not available in ES modules)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
-app.get("/", (req, res) => {
-    return res.status(200).json({ message: "Hello Bidyut", status: 1 });
-});
+
+app.use(route);
 // ---------------------------
 // ⭐ GLOBAL ERROR HANDLER
 // ---------------------------
