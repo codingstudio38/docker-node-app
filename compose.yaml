@@ -14,28 +14,33 @@ services:
       - .:/node-app
 
     working_dir: /node-app
-    container_name: my-node-app-test
+    container_name: my-node-app
 
     ports:
       - "5000:5000"
 
     env_file:
       - ./.env
+    networks:
+      - mongo-db-network
 
-    depends_on:
-      - mongodb
+    # depends_on:
+    #   - mongodb
 
     # environment:
     #   MONGO_URI: mongodb://mongodb:27017/mydatabase
 
-  mongodb:
-    image: mongo:latest
-    container_name: docker-node-app-mongodb
-    ports:
-      - "27017:27017"
+  # mongodb:
+  #   image: mongo:latest
+  #   container_name: docker-node-app-mongodb
+  #   ports:
+  #     - "27017:27017"
 
-    volumes:
-      - mongo-data:/data/db
+  #   volumes:
+  #     - mongo-data:/data/db
 
-volumes:
-  mongo-data:
+# volumes:
+#   mongo-data:
+networks:
+  mongo-db-network:
+    external: true
