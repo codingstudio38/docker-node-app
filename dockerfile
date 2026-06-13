@@ -1,4 +1,5 @@
-FROM node:latest
+FROM node:latest 
+# FROM node:latest as node-app
 run npm install -g nodemon
 WORKDIR /node-app
 COPY . .
