@@ -1,5 +1,5 @@
 import express from "express";
-import { Index,AllUsers} from "../Controllers/Mycontroller.js";
+import { Index, AllUsers } from "../Controllers/Mycontroller.js";
 const routeapp = express.Router();
 routeapp.get("/", Index);
 routeapp.get("/all-users", AllUsers);
